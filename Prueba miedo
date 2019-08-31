@@ -2,9 +2,11 @@
 
 using namespace std;
 
-void main() {
+int main() {
   
-  cout <<"Prueba miedo:\n"<<;
-  cout <<"Hola mundo.\n"<<;
+  cout <<"Prueba miedo:\n"<<endl;
+  cout <<"Hola mundo.\n"<<endl;
 
+  return 0;
+  
 }
