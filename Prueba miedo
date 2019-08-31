@@ -4,8 +4,8 @@ using namespace std;
 
 int main() {
   
-  cout <<"Prueba miedo:\n"<<endl;
-  cout <<"Hola mundo.\n"<<endl;
+  cout <<"Prueba miedo:\n"<< endl;
+  cout <<"Hola mundo.\n"<< endl;
 
   return 0;
   
