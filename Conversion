@@ -6,6 +6,8 @@
 #include <string>
 #include <sstream>
 #include <math.h>
+#include <wchar.h>
+#include <locale.h>
 
 using namespace std;
 
@@ -148,7 +150,10 @@ string Binario(int input)
 }
 int main()
 {
-	cout << "DIGITE EL VALOR EN FORMATO HEXADECIMAL: ";
+
+	setlocale(LC_ALL, "");
+
+	cout << "Ingrese el número de tres dígitos en base hexadecimal: ";
 	char cadena[100];
 	cin >> cadena;
 
@@ -163,16 +168,17 @@ int main()
 		Lista[i] = cadena[i];
 		i++;
 	}
-	cout << "\n" << "BINARIO" << "\n";
+	cout << "\nEl número " << cadena << " en base hexadecimal equivale a: " << endl;
 	while (j < strlen(cadena)) {
 		ListaDecimal[j] = HexBinarioDec(Lista[j], m - k);
 		ListaBinario[j] = Binario(Lista[j]);
 		j++;
 		k = k + 1;
 	}
-	cout << "\n" << "DECIMAL" << "\n";
+	cout << "en base binaria.\n" << endl;
+
 	int decimal = Decimal(ListaDecimal, cadena);
-	cout << decimal << "\n";
+	cout << "\nEl número " << cadena << " en base hexadecimal equivale a " << decimal << " en base decimal.\n" << endl;
 
 	string LISTADEC[100];
 
@@ -193,11 +199,6 @@ int main()
 		}
 		s++;
 	}
-	int t = 0;
-	while (t < ((strlen(cadena) * 4) + 2)) {
-		cout << LISTADEC[t];
-		t++;
-	}
-	cout << "\n" << size;
+	
 	system("pause");
 }
