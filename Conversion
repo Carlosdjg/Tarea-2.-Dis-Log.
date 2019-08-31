@@ -11,6 +11,29 @@
 
 using namespace std;
 
+int verifica(char cadena[100]) {
+
+	int i = 0;
+	int ver = 0;
+
+	while (i<=(strlen(cadena)-1)) {
+
+		if (cadena[i]=='0' or cadena[i] == '1' or cadena[i] == '2' or cadena[i] == '3' or cadena[i] == '4' or cadena[i] == '5' or cadena[i] == '6' or cadena[i] == '7' or cadena[i] == '8' or cadena[i] == '9' or cadena[i] == 'A' or cadena[i] == 'B' or cadena[i] == 'C' or cadena[i] == 'D' or cadena[i] == 'E' or cadena[i] == 'F') {
+			ver = 0;
+			i++;
+		}
+
+		else {
+			ver = 1;
+			break;
+		}
+
+	}
+
+	return ver;
+
+}
+
 int HexBinarioDec(int input, int posc)
 {
 	int a;
@@ -148,6 +171,7 @@ string Binario(int input)
 	}
 	return valor;
 }
+
 int main()
 {
 
@@ -157,48 +181,65 @@ int main()
 	char cadena[100];
 	cin >> cadena;
 
-	int Lista[100];
-	int ListaDecimal[100];
-	string ListaBinario[100];
-	int j = 0;
-	int i = 0;
-	int k = 0;
-	int m = strlen(cadena) - 1;
-	while (i < strlen(cadena)) {
-		Lista[i] = cadena[i];
-		i++;
-	}
-	cout << "\nEl número " << cadena << " en base hexadecimal equivale a: " << endl;
-	while (j < strlen(cadena)) {
-		ListaDecimal[j] = HexBinarioDec(Lista[j], m - k);
-		ListaBinario[j] = Binario(Lista[j]);
-		j++;
-		k = k + 1;
-	}
-	cout << "en base binaria.\n" << endl;
+	if (strlen(cadena)==3) {
 
-	int decimal = Decimal(ListaDecimal, cadena);
-	cout << "\nEl número " << cadena << " en base hexadecimal equivale a " << decimal << " en base decimal.\n" << endl;
+		int ver=verifica(cadena);
 
-	string LISTADEC[100];
+		if (ver==0) {
+			int Lista[100];
+			int ListaDecimal[100];
+			string ListaBinario[100];
+			int j = 0;
+			int i = 0;
+			int k = 0;
+			int m = strlen(cadena) - 1;
+			while (i < strlen(cadena)) {
+				Lista[i] = cadena[i];
+				i++;
+			}
+			cout << "\nEl número " << cadena << " en base hexadecimal equivale a: " << endl;
+			while (j < strlen(cadena)) {
+				ListaDecimal[j] = HexBinarioDec(Lista[j], m - k);
+				ListaBinario[j] = Binario(Lista[j]);
+				j++;
+				k = k + 1;
+			}
+			cout << "en base binaria.\n" << endl;
 
-	int s = 0;
-	int z = 0;
-	string v;
-	string x;
-	int size = 0;
-	while (s < strlen(cadena)) {
-		int f = 0;
-		v = ListaBinario[s];
-		while (f < 4) {
-			x = v[f];
-			LISTADEC[z] = x;
-			z++;
-			f++;
-			size++;
+			int decimal = Decimal(ListaDecimal, cadena);
+			cout << "\nEl número " << cadena << " en base hexadecimal equivale a " << decimal << " en base decimal.\n" << endl;
+
+			string LISTADEC[100];
+
+			int s = 0;
+			int z = 0;
+			string v;
+			string x;
+			int size = 0;
+			while (s < strlen(cadena)) {
+				int f = 0;
+				v = ListaBinario[s];
+				while (f < 4) {
+					x = v[f];
+					LISTADEC[z] = x;
+					z++;
+					f++;
+					size++;
+				}
+				s++;
+			}
 		}
-		s++;
+
+		else{
+			cout << "\nEl número no está en base hexadecimal.\n" << endl;
+		}
+
+	}
+
+	else {
+		cout << "\nEl número debe ser de tres dígitos.\n" << endl;
 	}
 	
 	system("pause");
+	return 0;
 }
