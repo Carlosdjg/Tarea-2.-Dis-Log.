@@ -10,7 +10,9 @@
 
 using namespace std;
 
-void Hamming(int posicion, string Lista[], int length, string Lista0[], string Lista1[], string Lista3[], string Lista7[], string Lista15[]) {
+void Hamming(int posicion, string Lista[], int length, string Lista0[], string Lista1[], string Lista3[], string Lista7[], string Lista15[], bool paridad) {
+	
+	
 	int suma = 0;
 	if (posicion == 0) { //revisa 1 salta 1
 		while (posicion < length) {
@@ -19,11 +21,23 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 			suma = suma + m; //Cantidad de 1s
 			posicion = posicion + 2;
 		}
-		if (suma % 2 == 0) {
-			Lista0[0] = Lista[0] = "1"; //Paridad
+		if (paridad) {
+
+
+			if (suma % 2 == 0) {
+				Lista0[0] = Lista[0] = "1"; //Paridad
+			}
+			else {
+				Lista0[0] = Lista[0] = "0";
+			}
 		}
-		else {
-			Lista0[0] = Lista[0] = "0";
+		if (paridad == 0) {
+			if (suma % 2 == 0) {
+				Lista0[0] = Lista[0] = "0"; //Paridad
+			}
+			else {
+				Lista0[0] = Lista[0] = "1";
+			}
 		}
 	}
 	if (posicion == 1) {
@@ -38,11 +52,23 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 			}
 			posicion = posicion + 2;
 		}
-		if (suma % 2 == 0) {
-			Lista1[1] = Lista[1] = "1";;
+		if (paridad) {
+
+
+			if (suma % 2 == 0) {
+				Lista1[1] = Lista[1] = "1"; //Paridad
+			}
+			else {
+				Lista1[1] = Lista[1] = "0";
+			}
 		}
-		else {
-			Lista1[1] = Lista[1] = "0";
+		if (paridad == 0) {
+			if (suma % 2 == 0) {
+				Lista1[1] = Lista[1] = "0"; //Paridad
+			}
+			else {
+				Lista1[1] = Lista[1] = "1";
+			}
 		}
 	}
 	if (posicion == 3) {
@@ -57,11 +83,23 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 			}
 			posicion = posicion + 4;
 		}
-		if (suma % 2 == 0) {
-			Lista3[3] = Lista[3] = "1";;
+		if (paridad) {
+
+
+			if (suma % 2 == 0) {
+				Lista3[3] = Lista[3] = "1"; //Paridad 
+			}
+			else {
+				Lista3[3] = Lista[3] = "0";
+			}
 		}
-		else {
-			Lista3[3] = Lista[3] = "0";
+		if (paridad == 0) {
+			if (suma % 2 == 0) {
+				Lista3[3] = Lista[3] = "0"; //Paridad
+			}
+			else {
+				Lista3[3] = Lista[3] = "1";
+			}
 		}
 	}
 	if (posicion == 7) { //revisa 8 salta 8
@@ -76,11 +114,23 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 			}
 			posicion = posicion + 8;
 		}
-		if (suma % 2 == 0) {
-			Lista7[7] = Lista[7] = "1";;
+		if (paridad) {
+
+
+			if (suma % 2 == 0) {
+				Lista7[7] = Lista[7] = "1"; //Paridad 
+			}
+			else {
+				Lista7[7] = Lista[7] = "0";
+			}
 		}
-		else {
-			Lista7[7] = Lista[7] = "0";
+		if (paridad == 0) {
+			if (suma % 2 == 0) {
+				Lista7[7] = Lista[7] = "0"; //Paridad
+			}
+			else {
+				Lista7[7] = Lista[7] = "1";
+			}
 		}
 	}
 	if (posicion == 15) { //revisa 16 salta 16
@@ -95,11 +145,22 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 			}
 			posicion = posicion + 16;
 		}
-		if (suma == 1) {
-			Lista15[15] = Lista[15] = "0";;
+		if (paridad) {
+			if (suma == 1) {
+				Lista15[15] = Lista[15] = "0";;
+			}
+			else {
+				Lista15[15] = Lista[15] = "1";
+			}
 		}
-		else {
-			Lista15[15] = Lista[15] = "1";
+		if (paridad == 0) {
+			if (suma == 1) {
+				Lista15[15] = Lista[15] = "1";;
+			}
+			else {
+				Lista15[15] = Lista[15] = "0";
+			}
+
 		}
 	}
 }
@@ -107,7 +168,7 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 void printLista(string Lista[], int size) {
 	int i = 0;
 	while (i < size) {
-		cout << Lista[i]<<"   ";
+		cout << Lista[i] << "   ";
 		i++;
 	}
 	cout << endl;
@@ -345,16 +406,21 @@ int main()
 	string Lista7[100];
 	string Lista15[100];
 	string ListaBIN[100];
-	
+
+	bool paridad; //un 1 para par, un 0 para impar
+	cout << "Digite 1 para paridad Par / 0 para paridad Impar: ";
+	cin >> paridad;
+	cout << "\n";
+
 	i = 0;
 	while (i < 17) {
-		ListaBIN[i]=Lista1[i] = Lista3[i] = Lista7[i] = Lista15[i] = Lista0[i] = " ";
+		ListaBIN[i] = Lista1[i] = Lista3[i] = Lista7[i] = Lista15[i] = Lista0[i] = " ";
 		i++;
 	}
 	b = 0;
 	k = 0;
 	while (b < 17) {
-		if (b == 0||b==1||b==3||b==7||b==15) {
+		if (b == 0 || b == 1 || b == 3 || b == 7 || b == 15) {
 			b++;
 		}
 		else {
@@ -365,7 +431,7 @@ int main()
 	}
 	b = 0;
 	while (b < 17) {
-		Hamming(b, ListaHam, 17, Lista0, Lista1, Lista3, Lista7, Lista15);
+		Hamming(b, ListaHam, 17, Lista0, Lista1, Lista3, Lista7, Lista15,paridad);
 		b++;
 	}
 	b = 0;
@@ -390,6 +456,7 @@ int main()
 	printLista(ListaHam, 17);
 	cout << endl;
 	system("pause");
-	
+
 }
+
 
