@@ -12,22 +12,22 @@ using namespace std;
 
 void Hamming(int posicion, string Lista[], int length, string Lista0[], string Lista1[], string Lista3[], string Lista7[], string Lista15[]) {
 	int suma = 0;
-	if (posicion == 0) {
+	if (posicion == 0) { //revisa 1 salta 1
 		while (posicion < length) {
 			Lista0[posicion] = Lista[posicion];
 			int m = stoi(Lista[posicion]);
-			suma = suma + m;
+			suma = suma + m; //Cantidad de 1s
 			posicion = posicion + 2;
 		}
 		if (suma % 2 == 0) {
-			Lista0[0] = Lista[0] = "1";
+			Lista0[0] = Lista[0] = "1"; //Paridad
 		}
 		else {
 			Lista0[0] = Lista[0] = "0";
 		}
 	}
 	if (posicion == 1) {
-		while (posicion < length) {
+		while (posicion < length) { //revisa 2 salta 2
 			int j = 0;
 			while (j < 2 && posicion < length) {
 				Lista1[posicion] = Lista[posicion];
@@ -46,7 +46,7 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 		}
 	}
 	if (posicion == 3) {
-		while (posicion < length) {
+		while (posicion < length) { //revisa 4 salta 4
 			int j = 0;
 			while (j < 4 && posicion < length) {
 				Lista3[posicion] = Lista[posicion];
@@ -64,7 +64,7 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 			Lista3[3] = Lista[3] = "0";
 		}
 	}
-	if (posicion == 7) {
+	if (posicion == 7) { //revisa 8 salta 8
 		while (posicion < length) {
 			int j = 0;
 			while (j < 8 && posicion < length) {
@@ -83,7 +83,7 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 			Lista7[7] = Lista[7] = "0";
 		}
 	}
-	if (posicion == 15) {
+	if (posicion == 15) { //revisa 16 salta 16
 		while (posicion < length) {
 			int j = 0;
 			while (j < 16 && posicion < length) {
@@ -99,7 +99,7 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 			Lista15[15] = Lista[15] = "0";;
 		}
 		else {
-			Lista15[15] = Lista[15] = "0";
+			Lista15[15] = Lista[15] = "1";
 		}
 	}
 }
@@ -305,13 +305,14 @@ int main()
 		}
 		s++;
 	}
-	
+	//Construccion de la Lista de Hamming
 	string ListaHam[100];
 	int b = 0;
 	while (b < 17) {
 		ListaHam[b] = "A";
 		b++;
 	}
+	//Remplazar los valores potencia de 2 con 0s
 	b = 0;
 	while (b < 17) {
 		int x = pow(2, b);
@@ -323,6 +324,7 @@ int main()
 			b++;
 		}
 	}
+	//Remplazar los valores A con los datos binarios
 	b = 0;
 	k = 0;
 	while (b < 17) {
@@ -336,7 +338,7 @@ int main()
 		}
 	}
 	cout << endl;
-
+	//Creacion de Lista vacias
 	string Lista0[100];
 	string Lista1[100];
 	string Lista3[100];
@@ -367,7 +369,8 @@ int main()
 		b++;
 	}
 	b = 0;
-	string Encabezado[100] = { "p1","p2","d1","d2","d3","d4","d5","p4","d6","d7","d8","d9 d10 d11 d12  p5 d13" };
+	//Tabla
+	string Encabezado[100] = { "p1","p2","d1","p3","d2","d3","d4","p4","d5","d6","d7","d8  d9 d10 d11  p5 d12" };
 	cout << endl;
 	cout << "                               |";
 	printLista2(Encabezado, 17);
