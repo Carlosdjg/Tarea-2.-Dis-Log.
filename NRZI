@@ -1,0 +1,231 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <iostream>
+#include <string.h>
+#include <string>
+#include <sstream>
+#include <math.h>
+
+using namespace std;
+
+int HexBinarioDec(int input, int posc)
+{
+	int a;
+	int c = 0;
+	int b = pow(16, posc);
+	if (input == 48) {
+		cout << "0000 ";
+		a = 0 * b;
+	}
+	if (input == 49) {
+		cout << "0001 ";
+		a = 1 * b;
+	}
+	if (input == 50) {
+		cout << "0010 ";
+		a = 2 * b;
+	}
+	if (input == 51) {
+		cout << "0011 ";
+		a = 3 * b;
+	}
+	if (input == 52) {
+		cout << "0100 ";
+		a = 4 * b;
+	}
+	if (input == 53) {
+		cout << "0101 ";
+		a = 5 * b;
+	}
+	if (input == 54) {
+		cout << "0110 ";
+		a = 6 * b;
+	}
+	if (input == 55) {
+		cout << "0111 ";
+		a = 7 * b;
+	}
+	if (input == 56) {
+		cout << "1000 ";
+		a = 8 * b;
+	}
+	if (input == 57) {
+		cout << "1001 ";
+		a = 9 * b;
+	}
+	if (input == 65) {
+		cout << "1010 ";
+		a = 10 * b;
+	}
+	if (input == 66) {
+		cout << "1011 ";
+		a = 11 * b;
+	}
+	if (input == 67) {
+		cout << "1100 ";
+		a = 12 * b;
+	}
+	if (input == 68) {
+		cout << "1101 ";
+		a = 13 * b;
+	}
+	if (input == 69) {
+		cout << "1110 ";
+		a = 14 * b;
+	}
+	if (input == 70) {
+		cout << "1111 ";
+		a = 15 * b;
+	}
+	return a;
+}
+
+int Decimal(int ListDec[100], char Cadena[100]) {
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	while (c < strlen(Cadena)) {
+		b = ListDec[c];
+		a = a + b;
+		c++;
+	}
+	return a;
+}
+
+string Binario(int input)
+{
+	string valor;
+	if (input == 48) {
+		valor = "0000";
+	}
+	if (input == 49) {
+		valor = "0001";
+	}
+	if (input == 50) {
+		valor = "0010";
+	}
+	if (input == 51) {
+		valor = "0011";
+	}
+	if (input == 52) {
+		valor = "0100";
+	}
+	if (input == 53) {
+		valor = "0101";
+	}
+	if (input == 54) {
+		valor = "0110";
+	}
+	if (input == 55) {
+		valor = "0111";
+	}
+	if (input == 56) {
+		valor = "1000";
+	}
+	if (input == 57) {
+		valor = "1001";
+	}
+	if (input == 65) {
+		valor = "1010";
+	}
+	if (input == 66) {
+		valor = "1011";
+	}
+	if (input == 67) {
+		valor = "1100";
+	}
+	if (input == 68) {
+		valor = "1101";
+	}
+	if (input == 69) {
+		valor = "1110";
+	}
+	if (input == 70) {
+		valor = "1111";
+	}
+	return valor;
+}
+int main()
+{
+	cout << "DIGITE EL VALOR EN FORMATO HEXADECIMAL: ";
+	char cadena[100];
+	cin >> cadena;
+
+	int Lista[100];
+	int ListaDecimal[100];
+	string ListaBinario[100];
+	int j = 0;
+	int i = 0;
+	int k = 0;
+	int m = strlen(cadena) - 1;
+	while (i < strlen(cadena)) {
+		Lista[i] = cadena[i];
+		i++;
+	}
+	cout << "\n" << "BINARIO" << "\n";
+	while (j < strlen(cadena)) {
+		ListaDecimal[j] = HexBinarioDec(Lista[j], m - k);
+		ListaBinario[j] = Binario(Lista[j]);
+		j++;
+		k = k + 1;
+	}
+	cout << "\n" << "DECIMAL" << "\n";
+	int decimal = Decimal(ListaDecimal, cadena);
+	cout << decimal << "\n";
+
+	string LISTADEC[100];
+
+	int s = 0;
+	int z = 0;
+	string v;
+	string x;
+	int size = 0;
+	while (s < strlen(cadena)) {
+		int f = 0;
+		v = ListaBinario[s];
+		while (f < 4) {
+			x = v[f];
+			LISTADEC[z] = x;
+			z++;
+			f++;
+			size++;
+		}
+		s++;
+	}
+	int t = 0;
+	while (t < ((strlen(cadena) * 4) + 2)) {
+		cout << LISTADEC[t];
+		t++;
+	}
+	cout << "\n" << size;
+
+	cout << endl << endl << "NRZI" << endl << endl;
+
+	// NRZI Algorithm
+	// In NRZi algorithm whenever 1 occurs output changes (if low, then to high, else if high, then to low)
+	string nrzi = "";
+	for (int i = 0; i < size; i++)
+	{
+		// When i=0 there is no previous position to check from
+		// Out of Bounce error
+		// So we have seperate condition for then
+		// Better to put this condtition outside of loop, so that its not checked with every i
+		if (i == 0) {
+			if (LISTADEC[i] == "0") nrzi += "__";
+			else nrzi += "_-";
+		}
+		else if (LISTADEC[i] == "0") {
+			if (nrzi[i * 2 - 1] == '_') nrzi += "__";
+			else nrzi += "--";
+		}
+
+		else if (LISTADEC[i] == "1") {
+			if (nrzi[i * 2 - 1] == '_') nrzi += "_-";
+			else nrzi += "-_";
+		}
+		cout << nrzi.substr(i * 2, 2);
+	}
+	
+}
