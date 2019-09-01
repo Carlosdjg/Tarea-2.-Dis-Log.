@@ -1,0 +1,648 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <iostream>
+#include <string.h>
+#include <string>
+#include <sstream>
+#include <math.h>
+#include <wchar.h>
+#include <locale.h>
+#include <bits/stdc++.h>
+#include "miniwin.h"
+
+using namespace std;
+using namespace miniwin;
+
+int nrzi(char hex[100]){
+
+    vredimensiona(800, 700);
+    linea(100,400,800,400);
+    linea(100,0,100,700);
+
+    int estado=1;
+    int i=0;
+
+    while(i<=11){
+
+            switch(estado){
+
+            case 1:
+
+                switch(hex[i]){
+
+                case '1':
+
+                    color(AZUL);
+                    linea(100+i*50,350,100+i*50,450);
+                    color(AZUL);
+                    linea(100+i*50,450,100+(i+1)*50,450);
+
+                    estado=0;
+
+                    i++;
+
+                case '0':
+
+                    color(AZUL);
+                    linea(100+i*50,350,100+(i+1)*50,350);
+
+                    estado=1;
+
+                    i++;
+
+                }
+
+            case 0:
+
+                switch(hex[i]){
+
+                case '1':
+
+                    color(AZUL);
+                    linea(100+i*50,450,100+i*50,350);
+                    color(AZUL);
+                    linea(100+i*50,350,100+(i+1)*50,350);
+
+                    estado=1;
+
+                    i++;
+
+
+                case '0':
+
+                    color(AZUL);
+                    linea(100+i*50,450,100+(i+1)*50,450);
+
+                    estado=0;
+
+                    i++;
+
+                }
+
+
+            }
+
+    }
+
+    refresca();
+
+    return 0;
+
+}
+
+int verifica(char cadena[100]) {
+
+	int i = 0;
+	int ver = 0;
+
+	while (i<=(strlen(cadena)-1)) {
+
+		if (cadena[i]=='0' or cadena[i] == '1' or cadena[i] == '2' or cadena[i] == '3' or cadena[i] == '4' or cadena[i] == '5' or cadena[i] == '6' or cadena[i] == '7' or cadena[i] == '8' or cadena[i] == '9' or cadena[i] == 'A' or cadena[i] == 'B' or cadena[i] == 'C' or cadena[i] == 'D' or cadena[i] == 'E' or cadena[i] == 'F') {
+			ver = 0;
+			i++;
+		}
+
+		else {
+			ver = 1;
+			break;
+		}
+
+	}
+
+	return ver;
+
+}
+
+int HexBinarioDec(int input, int posc)
+{
+	int a;
+	int c = 0;
+	int b = pow(16, posc);
+	if (input == 48) {
+		cout << "0000 ";
+		a = 0 * b;
+	}
+	if (input == 49) {
+		cout << "0001 ";
+		a = 1 * b;
+	}
+	if (input == 50) {
+		cout << "0010 ";
+		a = 2 * b;
+	}
+	if (input == 51) {
+		cout << "0011 ";
+		a = 3 * b;
+	}
+	if (input == 52) {
+		cout << "0100 ";
+		a = 4 * b;
+	}
+	if (input == 53) {
+		cout << "0101 ";
+		a = 5 * b;
+	}
+	if (input == 54) {
+		cout << "0110 ";
+		a = 6 * b;
+	}
+	if (input == 55) {
+		cout << "0111 ";
+		a = 7 * b;
+	}
+	if (input == 56) {
+		cout << "1000 ";
+		a = 8 * b;
+	}
+	if (input == 57) {
+		cout << "1001 ";
+		a = 9 * b;
+	}
+	if (input == 65) {
+		cout << "1010 ";
+		a = 10 * b;
+	}
+	if (input == 66) {
+		cout << "1011 ";
+		a = 11 * b;
+	}
+	if (input == 67) {
+		cout << "1100 ";
+		a = 12 * b;
+	}
+	if (input == 68) {
+		cout << "1101 ";
+		a = 13 * b;
+	}
+	if (input == 69) {
+		cout << "1110 ";
+		a = 14 * b;
+	}
+	if (input == 70) {
+		cout << "1111 ";
+		a = 15 * b;
+	}
+	return a;
+}
+
+int Decimal(int ListDec[100], char Cadena[100]) {
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	while (c < strlen(Cadena)) {
+		b = ListDec[c];
+		a = a + b;
+		c++;
+	}
+	return a;
+}
+
+string Binario(int input)
+{
+	string valor;
+	if (input == 48) {
+		valor = "0000";
+	}
+	if (input == 49) {
+		valor = "0001";
+	}
+	if (input == 50) {
+		valor = "0010";
+	}
+	if (input == 51) {
+		valor = "0011";
+	}
+	if (input == 52) {
+		valor = "0100";
+	}
+	if (input == 53) {
+		valor = "0101";
+	}
+	if (input == 54) {
+		valor = "0110";
+	}
+	if (input == 55) {
+		valor = "0111";
+	}
+	if (input == 56) {
+		valor = "1000";
+	}
+	if (input == 57) {
+		valor = "1001";
+	}
+	if (input == 65) {
+		valor = "1010";
+	}
+	if (input == 66) {
+		valor = "1011";
+	}
+	if (input == 67) {
+		valor = "1100";
+	}
+	if (input == 68) {
+		valor = "1101";
+	}
+	if (input == 69) {
+		valor = "1110";
+	}
+	if (input == 70) {
+		valor = "1111";
+	}
+	return valor;
+}
+
+int hxtobin(char cadena[100]){
+
+    char hex[12];
+
+    switch(cadena[0]){
+    case '0':
+        hex[0]='0';
+        hex[1]='0';
+        hex[2]='0';
+        hex[3]='0';
+        break;
+
+    case '1':
+        hex[0]='0';
+        hex[1]='0';
+        hex[2]='0';
+        hex[3]='1';
+        break;
+
+    case '2':
+        hex[0]='0';
+        hex[1]='0';
+        hex[2]='1';
+        hex[3]='0';
+        break;
+
+    case '3':
+        hex[0]='0';
+        hex[1]='0';
+        hex[2]='1';
+        hex[3]='1';
+        break;
+
+    case '4':
+        hex[0]='0';
+        hex[1]='1';
+        hex[2]='0';
+        hex[3]='0';
+        break;
+    case '5':
+        hex[0]='0';
+        hex[1]='1';
+        hex[2]='0';
+        hex[3]='1';
+        break;
+    case '6':
+        hex[0]='0';
+        hex[1]='1';
+        hex[2]='0';
+        hex[3]='1';
+        break;
+    case '7':
+        hex[0]='0';
+        hex[1]='1';
+        hex[2]='1';
+        hex[3]='1';
+        break;
+    case '8':
+        hex[0]='1';
+        hex[1]='0';
+        hex[2]='0';
+        hex[3]='0';
+        break;
+    case '9':
+        hex[0]='1';
+        hex[1]='0';
+        hex[2]='0';
+        hex[3]='1';
+        break;
+    case 'A':
+        hex[0]='1';
+        hex[1]='0';
+        hex[2]='1';
+        hex[3]='0';
+        break;
+    case 'B':
+        hex[0]='1';
+        hex[1]='0';
+        hex[2]='1';
+        hex[3]='1';
+        break;
+    case 'C':
+        hex[0]='1';
+        hex[1]='1';
+        hex[2]='0';
+        hex[3]='0';
+        break;
+    case 'D':
+        hex[0]='1';
+        hex[1]='1';
+        hex[2]='0';
+        hex[3]='1';
+        break;
+    case 'E':
+        hex[0]='1';
+        hex[1]='1';
+        hex[2]='1';
+        hex[3]='0';
+        break;
+    case 'F':
+        hex[0]='1';
+        hex[1]='1';
+        hex[2]='1';
+        hex[3]='1';
+        break;
+    }
+
+    switch(cadena[1]){
+    case '0':
+        hex[4]='0';
+        hex[5]='0';
+        hex[6]='0';
+        hex[7]='0';
+        break;
+
+    case '1':
+        hex[4]='0';
+        hex[5]='0';
+        hex[6]='0';
+        hex[7]='1';
+        break;
+
+    case '2':
+        hex[4]='0';
+        hex[5]='0';
+        hex[6]='1';
+        hex[7]='0';
+        break;
+
+    case '3':
+        hex[4]='0';
+        hex[5]='0';
+        hex[6]='1';
+        hex[7]='1';
+        break;
+
+    case '4':
+        hex[4]='0';
+        hex[5]='1';
+        hex[6]='0';
+        hex[7]='0';
+        break;
+    case '5':
+        hex[4]='0';
+        hex[5]='1';
+        hex[6]='0';
+        hex[7]='1';
+        break;
+    case '6':
+        hex[4]='0';
+        hex[5]='1';
+        hex[6]='0';
+        hex[7]='1';
+        break;
+    case '7':
+        hex[4]='0';
+        hex[5]='1';
+        hex[6]='1';
+        hex[7]='1';
+        break;
+    case '8':
+        hex[4]='1';
+        hex[5]='0';
+        hex[6]='0';
+        hex[7]='0';
+        break;
+    case '9':
+        hex[4]='1';
+        hex[5]='0';
+        hex[6]='0';
+        hex[7]='1';
+        break;
+    case 'A':
+        hex[4]='1';
+        hex[5]='0';
+        hex[6]='1';
+        hex[7]='0';
+        break;
+    case 'B':
+        hex[4]='1';
+        hex[5]='0';
+        hex[6]='1';
+        hex[7]='1';
+        break;
+    case 'C':
+        hex[4]='1';
+        hex[5]='1';
+        hex[6]='0';
+        hex[7]='0';
+        break;
+    case 'D':
+        hex[4]='1';
+        hex[5]='1';
+        hex[6]='0';
+        hex[7]='1';
+        break;
+    case 'E':
+        hex[4]='1';
+        hex[5]='1';
+        hex[6]='1';
+        hex[7]='0';
+        break;
+    case 'F':
+        hex[4]='1';
+        hex[5]='1';
+        hex[6]='1';
+        hex[7]='1';
+        break;
+    }
+
+    switch(cadena[2]){
+    case '0':
+        hex[8]='0';
+        hex[9]='0';
+        hex[10]='0';
+        hex[11]='0';
+        break;
+
+    case '1':
+        hex[8]='0';
+        hex[9]='0';
+        hex[10]='0';
+        hex[11]='1';
+        break;
+
+    case '2':
+        hex[8]='0';
+        hex[9]='0';
+        hex[10]='1';
+        hex[11]='0';
+        break;
+
+    case '3':
+        hex[8]='0';
+        hex[9]='0';
+        hex[10]='1';
+        hex[11]='1';
+        break;
+
+    case '4':
+        hex[8]='0';
+        hex[9]='1';
+        hex[10]='0';
+        hex[11]='0';
+        break;
+    case '5':
+        hex[8]='0';
+        hex[9]='1';
+        hex[10]='0';
+        hex[11]='1';
+        break;
+    case '6':
+        hex[8]='0';
+        hex[9]='1';
+        hex[10]='0';
+        hex[11]='1';
+        break;
+    case '7':
+        hex[8]='0';
+        hex[9]='1';
+        hex[10]='1';
+        hex[11]='1';
+        break;
+    case '8':
+        hex[8]='1';
+        hex[9]='0';
+        hex[10]='0';
+        hex[11]='0';
+        break;
+    case '9':
+        hex[8]='1';
+        hex[9]='0';
+        hex[10]='0';
+        hex[11]='1';
+        break;
+    case 'A':
+        hex[8]='1';
+        hex[9]='0';
+        hex[10]='1';
+        hex[11]='0';
+        break;
+    case 'B':
+        hex[8]='1';
+        hex[9]='0';
+        hex[10]='1';
+        hex[11]='1';
+        break;
+    case 'C':
+        hex[8]='1';
+        hex[9]='1';
+        hex[10]='0';
+        hex[11]='0';
+        break;
+    case 'D':
+        hex[8]='1';
+        hex[9]='1';
+        hex[10]='0';
+        hex[11]='1';
+        break;
+    case 'E':
+        hex[8]='1';
+        hex[9]='1';
+        hex[10]='1';
+        hex[11]='0';
+        break;
+    case 'F':
+        hex[8]='1';
+        hex[9]='1';
+        hex[10]='1';
+        hex[11]='1';
+        break;
+    }
+
+    nrzi(hex);
+
+    return 0;
+
+}
+
+int main()
+{
+
+	setlocale(LC_ALL, "");
+
+	cout << "Ingrese el número de tres dígitos en base hexadecimal: ";
+	char cadena[100];
+	cin >> cadena;
+
+	if (strlen(cadena)==3) {
+
+		int ver=verifica(cadena);
+
+		if (ver==0) {
+			int Lista[100];
+			int ListaDecimal[100];
+			string ListaBinario[100];
+			int j = 0;
+			int i = 0;
+			int k = 0;
+			int m = strlen(cadena) - 1;
+			while (i < strlen(cadena)) {
+				Lista[i] = cadena[i];
+				i++;
+			}
+			cout << "\nEl número " << cadena << " en base hexadecimal equivale a: " << endl;
+			while (j < strlen(cadena)) {
+				ListaDecimal[j] = HexBinarioDec(Lista[j], m - k);
+				ListaBinario[j] = Binario(Lista[j]);
+				j++;
+				k = k + 1;
+			}
+			cout << "en base binaria.\n" << endl;
+
+
+
+			hxtobin(cadena);
+
+			int decimal = Decimal(ListaDecimal, cadena);
+			cout << "\nEl número " << cadena << " en base hexadecimal equivale a " << decimal << " en base decimal.\n" << endl;
+
+			string LISTADEC[100];
+
+			int s = 0;
+			int z = 0;
+			string v;
+			string x;
+			int size = 0;
+			while (s < strlen(cadena)) {
+				int f = 0;
+				v = ListaBinario[s];
+				while (f < 4) {
+					x = v[f];
+					LISTADEC[z] = x;
+					z++;
+					f++;
+					size++;
+				}
+				s++;
+			}
+		}
+
+		else{
+			cout << "\nEl número no está en base hexadecimal.\n" << endl;
+		}
+
+	}
+
+	else {
+		cout << "\nEl número debe ser de tres dígitos.\n" << endl;
+	}
+
+	system("pause");
+	return 0;
+}
