@@ -99,7 +99,7 @@ void Hamming(int posicion, string Lista[], int length, string Lista0[], string L
 			Lista15[15] = Lista[15] = "0";;
 		}
 		else {
-			Lista15[15] = Lista[15] = "1";
+			Lista15[15] = Lista[15] = "0";
 		}
 	}
 }
