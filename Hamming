@@ -1,0 +1,392 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <iostream>
+#include <string.h>
+#include <string>
+#include <sstream>
+#include <math.h>
+
+using namespace std;
+
+void Hamming(int posicion, string Lista[], int length, string Lista0[], string Lista1[], string Lista3[], string Lista7[], string Lista15[]) {
+	int suma = 0;
+	if (posicion == 0) {
+		while (posicion < length) {
+			Lista0[posicion] = Lista[posicion];
+			int m = stoi(Lista[posicion]);
+			suma = suma + m;
+			posicion = posicion + 2;
+		}
+		if (suma % 2 == 0) {
+			Lista0[0] = Lista[0] = "1";
+		}
+		else {
+			Lista0[0] = Lista[0] = "0";
+		}
+	}
+	if (posicion == 1) {
+		while (posicion < length) {
+			int j = 0;
+			while (j < 2 && posicion < length) {
+				Lista1[posicion] = Lista[posicion];
+				int m = stoi(Lista[posicion]);
+				suma = suma + m;
+				j++;
+				posicion++;
+			}
+			posicion = posicion + 2;
+		}
+		if (suma % 2 == 0) {
+			Lista1[1] = Lista[1] = "1";;
+		}
+		else {
+			Lista1[1] = Lista[1] = "0";
+		}
+	}
+	if (posicion == 3) {
+		while (posicion < length) {
+			int j = 0;
+			while (j < 4 && posicion < length) {
+				Lista3[posicion] = Lista[posicion];
+				int m = stoi(Lista[posicion]);
+				suma = suma + m;
+				j++;
+				posicion++;
+			}
+			posicion = posicion + 4;
+		}
+		if (suma % 2 == 0) {
+			Lista3[3] = Lista[3] = "1";;
+		}
+		else {
+			Lista3[3] = Lista[3] = "0";
+		}
+	}
+	if (posicion == 7) {
+		while (posicion < length) {
+			int j = 0;
+			while (j < 8 && posicion < length) {
+				Lista7[posicion] = Lista[posicion];
+				int m = stoi(Lista[posicion]);
+				suma = suma + m;
+				j++;
+				posicion++;
+			}
+			posicion = posicion + 8;
+		}
+		if (suma % 2 == 0) {
+			Lista7[7] = Lista[7] = "1";;
+		}
+		else {
+			Lista7[7] = Lista[7] = "0";
+		}
+	}
+	if (posicion == 15) {
+		while (posicion < length) {
+			int j = 0;
+			while (j < 16 && posicion < length) {
+				Lista15[posicion] = Lista[posicion];
+				int m = stoi(Lista[posicion]);
+				suma = suma + m;
+				j++;
+				posicion++;
+			}
+			posicion = posicion + 16;
+		}
+		if (suma == 1) {
+			Lista15[15] = Lista[15] = "0";;
+		}
+		else {
+			Lista15[15] = Lista[15] = "1";
+		}
+	}
+}
+
+void printLista(string Lista[], int size) {
+	int i = 0;
+	while (i < size) {
+		cout << Lista[i]<<"   ";
+		i++;
+	}
+	cout << endl;
+}
+void printLista2(string Lista[], int size) {
+	int i = 0;
+	while (i < size) {
+		cout << Lista[i] << "  ";
+		i++;
+	}
+	cout << endl;
+}
+
+int HexBinarioDec(int input, int posc)
+{
+	int a;
+	int c = 0;
+	int b = pow(16, posc);
+	if (input == 48) {
+		cout << "0000 ";
+		a = 0 * b;
+	}
+	if (input == 49) {
+		cout << "0001 ";
+		a = 1 * b;
+	}
+	if (input == 50) {
+		cout << "0010 ";
+		a = 2 * b;
+	}
+	if (input == 51) {
+		cout << "0011 ";
+		a = 3 * b;
+	}
+	if (input == 52) {
+		cout << "0100 ";
+		a = 4 * b;
+	}
+	if (input == 53) {
+		cout << "0101 ";
+		a = 5 * b;
+	}
+	if (input == 54) {
+		cout << "0110 ";
+		a = 6 * b;
+	}
+	if (input == 55) {
+		cout << "0111 ";
+		a = 7 * b;
+	}
+	if (input == 56) {
+		cout << "1000 ";
+		a = 8 * b;
+	}
+	if (input == 57) {
+		cout << "1001 ";
+		a = 9 * b;
+	}
+	if (input == 65) {
+		cout << "1010 ";
+		a = 10 * b;
+	}
+	if (input == 66) {
+		cout << "1011 ";
+		a = 11 * b;
+	}
+	if (input == 67) {
+		cout << "1100 ";
+		a = 12 * b;
+	}
+	if (input == 68) {
+		cout << "1101 ";
+		a = 13 * b;
+	}
+	if (input == 69) {
+		cout << "1110 ";
+		a = 14 * b;
+	}
+	if (input == 70) {
+		cout << "1111 ";
+		a = 15 * b;
+	}
+	return a;
+}
+
+int Decimal(int ListDec[100], char Cadena[100]) {
+	int a = 0;
+	int b = 0;
+	int c = 0;
+	while (c < strlen(Cadena)) {
+		b = ListDec[c];
+		a = a + b;
+		c++;
+	}
+	return a;
+}
+
+string Binario(int input)
+{
+	string valor;
+	if (input == 48) {
+		valor = "0000";
+	}
+	if (input == 49) {
+		valor = "0001";
+	}
+	if (input == 50) {
+		valor = "0010";
+	}
+	if (input == 51) {
+		valor = "0011";
+	}
+	if (input == 52) {
+		valor = "0100";
+	}
+	if (input == 53) {
+		valor = "0101";
+	}
+	if (input == 54) {
+		valor = "0110";
+	}
+	if (input == 55) {
+		valor = "0111";
+	}
+	if (input == 56) {
+		valor = "1000";
+	}
+	if (input == 57) {
+		valor = "1001";
+	}
+	if (input == 65) {
+		valor = "1010";
+	}
+	if (input == 66) {
+		valor = "1011";
+	}
+	if (input == 67) {
+		valor = "1100";
+	}
+	if (input == 68) {
+		valor = "1101";
+	}
+	if (input == 69) {
+		valor = "1110";
+	}
+	if (input == 70) {
+		valor = "1111";
+	}
+	return valor;
+}
+int main()
+{
+	cout << "DIGITE EL VALOR EN FORMATO HEXADECIMAL: ";
+	char cadena[100];
+	cin >> cadena;
+
+	int Lista[100];
+	int ListaDecimal[100];
+	string ListaBinario[100];
+	int j = 0;
+	int i = 0;
+	int k = 0;
+	int m = strlen(cadena) - 1;
+	while (i < strlen(cadena)) {
+		Lista[i] = cadena[i];
+		i++;
+	}
+	cout << "\n" << "BINARIO" << "\n";
+	while (j < strlen(cadena)) {
+		ListaDecimal[j] = HexBinarioDec(Lista[j], m - k);
+		ListaBinario[j] = Binario(Lista[j]);
+		j++;
+		k = k + 1;
+	}
+	cout << "\n" << "DECIMAL" << "\n";
+	int decimal = Decimal(ListaDecimal, cadena);
+	cout << decimal << "\n";
+
+	string LISTADEC[100];
+
+	int s = 0;
+	int z = 0;
+	string v;
+	string x;
+	int size = 0;
+	while (s < strlen(cadena)) {
+		int f = 0;
+		v = ListaBinario[s];
+		while (f < 4) {
+			x = v[f];
+			LISTADEC[z] = x;
+			z++;
+			f++;
+			size++;
+		}
+		s++;
+	}
+	
+	string ListaHam[100];
+	int b = 0;
+	while (b < 17) {
+		ListaHam[b] = "A";
+		b++;
+	}
+	b = 0;
+	while (b < 17) {
+		int x = pow(2, b);
+		if (x < 17) {
+			ListaHam[(x - 1)] = "0";
+			b++;
+		}
+		else {
+			b++;
+		}
+	}
+	b = 0;
+	k = 0;
+	while (b < 17) {
+		if (ListaHam[b] == "A") {
+			ListaHam[b] = LISTADEC[k];
+			k++;
+			b++;
+		}
+		else {
+			b++;
+		}
+	}
+	cout << endl;
+
+	string Lista0[100];
+	string Lista1[100];
+	string Lista3[100];
+	string Lista7[100];
+	string Lista15[100];
+	string ListaBIN[100];
+	
+	i = 0;
+	while (i < 17) {
+		ListaBIN[i]=Lista1[i] = Lista3[i] = Lista7[i] = Lista15[i] = Lista0[i] = " ";
+		i++;
+	}
+	b = 0;
+	k = 0;
+	while (b < 17) {
+		if (b == 0||b==1||b==3||b==7||b==15) {
+			b++;
+		}
+		else {
+			ListaBIN[b] = LISTADEC[k];
+			k++;
+			b++;
+		}
+	}
+	b = 0;
+	while (b < 17) {
+		Hamming(b, ListaHam, 17, Lista0, Lista1, Lista3, Lista7, Lista15);
+		b++;
+	}
+	b = 0;
+	string Encabezado[100] = { "p1","p2","d1","d2","d3","d4","d5","p4","d6","d7","d8","d9 d10 d11 d12  p5 d13" };
+	cout << endl;
+	cout << "                               |";
+	printLista2(Encabezado, 17);
+	cout << "Palabra de datos (sin paridad) | ";
+	printLista(ListaBIN, 17);
+	cout << "             p1                | ";
+	printLista(Lista0, 17);
+	cout << "             p2                | ";
+	printLista(Lista1, 17);
+	cout << "             p3                | ";
+	printLista(Lista3, 17);
+	cout << "             p4                | ";
+	printLista(Lista7, 17);
+	cout << "             p5                | ";
+	printLista(Lista15, 17);
+	cout << "Palabra de datos (con paridad) | ";
+	printLista(ListaHam, 17);
+	cout << endl;
+	system("pause");
+	
+}
+
