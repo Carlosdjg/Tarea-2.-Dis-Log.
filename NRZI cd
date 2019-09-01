@@ -55,6 +55,8 @@ int nrzi(char hex[12]){
 
                 }
 
+                break;
+
             case 0:
 
                 switch(hex[i]){
@@ -83,6 +85,8 @@ int nrzi(char hex[12]){
                     break;
 
                 }
+
+                break;
 
 
             }
